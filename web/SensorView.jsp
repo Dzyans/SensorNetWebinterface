@@ -42,7 +42,7 @@
         function getNodeSensors(truck_id){
             document.getElementById("Truck_id").innerHTML = truck_id;
             
-            console.log(getDate() + "--e---------------------------------------")
+            console.log(getDate() + "--------------------------------------------")
             var ref = new Firebase("https://sizzling-heat-4676.firebaseio.com/"+ truck_id +"/sensor/node_frontTruckSection/");
             ref.once('value', function (snap){
                 var sensorTypeAmount = snap.numChildren(); 
