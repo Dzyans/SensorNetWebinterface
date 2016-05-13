@@ -1,11 +1,11 @@
 /*
- * Made by: Patrick Kaalund
+ * Made by: Thor Dahlstrøm, Patrick Kaalund
  * Created: 29.marts 2016
  */
 
 function initMap() {
     var myLatlng = {lat: 55.7075059, lng: 12.5862603};
-    var map = new google.maps.Map(document.getElementById('map'), {
+    var map = new google.maps.Map(document.getElementById("map"), {
         zoom: 12,
         center: myLatlng
     });
@@ -27,22 +27,29 @@ function initMap() {
         map.setCenter(marker.getPosition());
         //infowindow.open(marker.get('map'), marker);
     });
-    updatemap(map);
+    updatemap(map, myLatlng, marker);
    
 }
- function updatemap(map){
-        ref = new Firebase("https://sizzling-heat-4676.firebaseio.com/Truck_Thorm_0/location/");
+
+function updatemap(map, myLatlng, marker){
+        ref = new Firebase("https://sizzling-heat-4676.firebaseio.com/Truck_Thorm_0/location/Current_location/");
         
-        ref.limitToLast(1).on("value", function (dataSnapshot, adsf){
-            console.log(dataSnapshot.key());
-            console.log(dataSnapshot.numChildren());
-            console.log(dataSnapshot.val().key());
-           var latitute = dataSnapshot.child("latitute").val();
-           var longitude = dataSnapshot.child("longitude").val();
+        ref.limitToFirst(1).on("child_changed", function (dataSnapshot){
+            console.log(dataSnapshot.child("asString").key());
+           
+            console.log(dataSnapshot.val());
+           var asString = dataSnapshot.val();
+            var latitute = asString.split(" ")[0];
+           var longitude = asString.split(" ")[1];
            console.log(latitute);
            console.log(longitude);
+           marker.setMap(null);
+           myLatlng = {lat: parseFloat(latitute), lng: parseFloat(longitude)};
+
+           marker.setPosition(myLatlng);
+
+           map.setCenter(myLatlng);
+           marker.setMap(map);
            
-           var LatLng = {lat: latitute, lng: longitude};
-           map.setCenter(LatLng);
         });
     }

@@ -19,6 +19,10 @@ function populateTruckList(){
             var cell_truckStatus = row.insertCell(1);
             row.style.backgroundColor = "lightblue";
             cell_truckUID.innerHTML = childSnapshot.key();
+            cell_truckUID.addEventListener('click',function (){
+                console.log("clicked!!!!");
+                window.location.assign('SensorView.jsp');
+            });
             
             console.log(childSnapshot.key()); 
         });
@@ -28,6 +32,8 @@ function populateTruckList(){
 
 function depopulateTruckList(){
     var div = document.getElementById('sensorTable');
+    var section = document.getElementById('section');
+    section.innerHTML ="<table id='sensorTable'></table>";
     while(div.firstChild){
         div.removeChild(div.firstChild);
     }
