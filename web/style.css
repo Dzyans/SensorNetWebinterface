@@ -23,7 +23,7 @@ body{
 #map {    
     height: 300px;
     width: 300px;    
-    position: relative;
+    position: fixed;
     padding: 5px;     
 }
 
