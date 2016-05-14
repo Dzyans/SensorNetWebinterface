@@ -13,9 +13,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7Hmek5GDtLt4fYPGy4SmwjFlg2LWlZyU&callback=initMap">
-        </script>
+        
         <script type="text/javascript" src="Map.js" ></script> <!Script for map>
         
         
@@ -30,24 +28,6 @@
              if(!LoginChecker.checkLoggedIn(cookies)){
             response.sendRedirect("login.jsp");
         }
-//             boolean loggedInCookieFound = false;
-//             boolean loggedIn = false;
-//             for(int i = 0; i < cookies.length; i++){
-//                 System.out.print(cookies[i].getName());
-//                 if(cookies[i].getName().equals("login")){
-//                     loggedInCookieFound = true;
-//                     Cookie c = cookies[i];
-//                     System.out.println(c.getValue());
-//                     if(!c.getValue().equals("valid")){
-//                         System.out.println("found cookie, but not valid");
-//                     response.sendRedirect("login.jsp");
-//                 } else loggedIn = true;
-//                 }                
-//             }
-//              if(!loggedInCookieFound && !loggedIn){
-//                     response.sendRedirect("login.jsp");
-//                 }
-
         
         %>
         
@@ -55,18 +35,17 @@
             <h1> SensorNet </h1>
         </div>
         <div id="nav">
-            <p onclick="populateTruckList()"> Trucks<br>
-            chaufører<br>
+            <p id="truckText" onclick="populateTruckList()"> Trucks<br>
             <!--<p onclick="clearFirebase('')"> clear firebase<br>-->
         </div>
         <div id="section">
-            
+            <<-truk på trucks for at få liste over active trucks
             <table id="sensorTable">
                 
             </table>
         </div>
         <div id="footer">
-            bye bye
+            The edge
         </div>
     </body>
 </html>

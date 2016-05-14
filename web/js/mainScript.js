@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 function populateTruckList(){
-    var ref = new Firebase("https://sizzling-heat-4676.firebaseio.com/");
+    var ref = new Firebase("https://sizzling-heat-4676.firebaseio.com/ActiveTrucks/");
     depopulateTruckList();
     
     var tablearea = document.getElementById("sensorTable");
@@ -19,6 +19,7 @@ function populateTruckList(){
             var cell_truckStatus = row.insertCell(1);
             row.style.backgroundColor = "lightblue";
             cell_truckUID.innerHTML = childSnapshot.key();
+            cell_truckUID.id = "truckText";
             cell_truckUID.addEventListener('click',function (){
                 console.log("clicked!!!!");
                 setTruckInfoCookie(cell_truckUID.innerHTML);
@@ -133,15 +134,15 @@ function getNodeSensors(){
             switch(sensorType){
                 case 'temp':
                     console.log("setting up temperature table");
-                    getSensordata('temp', truck_id);
+                    getSensordata('temp', truck_id, snapChild);
                     break;
                 case 'light':
-                    getSensordata('light', truck_id);
+                    getSensordata('light', truck_id, snapChild);
                     break;
                 
                 case 'pressure':
                     console.log("setting up pressure table");
-                    getSensordata('pressure', truck_id);
+                    getSensordata('pressure', truck_id, snapChild);
                     break;
             }
             
@@ -151,26 +152,36 @@ function getNodeSensors(){
     
 }        
 
-function getSensordata(sensorType, truck_id){
+function getSensordata(sensorType, truck_id, dataSnapshot){
     
     console.log("ligth found in switch");
-    var ref = new Firebase("https://sizzling-heat-4676.firebaseio.com/"+ truck_id+"/sensor/node_frontTruckSection/"+sensorType);
+    //    var ref = new Firebase("https://sizzling-heat-4676.firebaseio.com/"+ truck_id+"/sensor/node_frontTruckSection/"+sensorType);
     
-    ref.once('value', function (lSnap){
-        var lightSensorCount = lSnap.numChildren();
+    var data = dataSnapshot;
+    
+    //    ref.once('value', function (lSnap){
+    //        var lightSensorCount = lSnap.numChildren();
+    //        console.log("number of " + sensorType + " sensors " + lightSensorCount);
+    //        for(var i = 0; i < lightSensorCount; i++){
+    //            createSensorEntry(i, sensorType, truck_id);
+    //        }
+    //        
+    //    });
+    console.log(data.key() + " ++++++++ " + data.val())
+        var lightSensorCount = data.numChildren();
         console.log("number of " + sensorType + " sensors " + lightSensorCount);
         for(var i = 0; i < lightSensorCount; i++){
             createSensorEntry(i, sensorType, truck_id);
         }
         
-    });
+    
     
 }
 
 function createSensorEntry(index, sensorType, truck_id){
     var curDate = getDate();
     console.log("creating "+ sensorType + " table " + index);
-    var SensorRef = new Firebase("https://sizzling-heat-4676.firebaseio.com/"+ truck_id+"/sensor/node_frontTruckSection/" + sensorType + "/"+ index +"/"+ curDate);
+//    var SensorRef = new Firebase("https://sizzling-heat-4676.firebaseio.com/"+ truck_id+"/sensor/node_frontTruckSection/" + sensorType + "/"+ index +"/"+ curDate);
     
     var tablearea = document.getElementById(sensorType + "Table");
     var row = tablearea.insertRow(-1);
@@ -181,7 +192,34 @@ function createSensorEntry(index, sensorType, truck_id){
             + "/sensor/node_frontTruckSection/" + sensorType + "/"+ index +"/"+ curDate);
     SensorRef.limitToLast(1).on('child_added', function(datasnapshot){                  
         var data = datasnapshot.val();        
-        row.style.backgroundColor = "lightblue";
+        row.style.backgroundColor = "lightblue";       
         cell_truckUID.innerHTML = datasnapshot.val().toString();        
     });
 }
+
+function check(form) {            
+                console.log("doing stuff");
+                var xhr = new XMLHttpRequest();
+//                xhr.open("GET", "http://localhost:8080/SNRESTUsrAuth/Login/user/login/"+ form.userid.value + "/"+ form.pswrd.value, true);
+                xhr.open("GET", "http://54.229.188.28:8080/SNRESTUsrAuth/Login/user/login/" + form.userid.value+ "/" + form.pswrd.value, true);
+                xhr.onload = function () {
+                    
+                    console.log(xhr.responseText);
+                    console.log(xhr.status)
+                    
+                     if(xhr.status === 200) {
+                         setCookie('login', 'valid', 1);
+                    window.location.replace('mainPage.jsp');
+//                    setCookie(form.suderid.value, true);  
+                     }
+                else {
+                    setCookie('login', 'invalid', 1);
+                    if(xhr.status === 400){
+                        alert("Error Password or Username")/*displays error message*/
+                    }else alert("Connection error, please contact serviceprovider")
+                                   
+                        
+                }
+                };
+                xhr.send();
+            }

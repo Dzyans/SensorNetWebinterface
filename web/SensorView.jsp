@@ -22,7 +22,7 @@
         </script>
         
         <script type="text/javascript" src="js/mainScript.js"></script>
-        <script type="text/javascript" src="Map.js" ></script> <!Script for map>
+        <script type="text/javascript" src="js/Map.js" ></script> <!Script for map>
         <script type="text/javascript" src="js/libs/firebase/firebase.js" ></script> <!Script for firebase>
       <link rel="stylesheet" type="text/css" href="style.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -33,7 +33,7 @@
     <div id="header">
         <h1 id="Truck_id">Truck/sensorId</h1>
     </div>
-    <div id="nav" style="width: 350px">   
+    <div id="sensorViewMapPlace" style="width: 350px">   
         <div id="map">
         
     </div>
