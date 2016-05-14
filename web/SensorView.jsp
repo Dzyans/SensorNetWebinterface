@@ -4,13 +4,23 @@
     Author     : thor
 --%>
 
+<%@page import="utils.LoginChecker"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+   <%
+ Cookie[] cookies = request.getCookies();
+             if(!LoginChecker.checkLoggedIn(cookies)){
+            response.sendRedirect("login.jsp");
+        }
+%>
+
 <html>
+ 
     <head>
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7Hmek5GDtLt4fYPGy4SmwjFlg2LWlZyU&callback=initMap">
         </script>
+        
         <script type="text/javascript" src="js/mainScript.js"></script>
         <script type="text/javascript" src="Map.js" ></script> <!Script for map>
         <script type="text/javascript" src="js/libs/firebase/firebase.js" ></script> <!Script for firebase>
@@ -19,7 +29,7 @@
     
     <title>JSP Page</title>
 </head>
-<body onload="getNodeSensors('Truck_Thorm_0')">
+<body onload="getNodeSensors()">
     <div id="header">
         <h1 id="Truck_id">Truck/sensorId</h1>
     </div>

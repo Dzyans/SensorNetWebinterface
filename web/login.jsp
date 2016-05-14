@@ -15,6 +15,7 @@
     <head>
         <title>Login</title>
         <link rel="stylesheet" type="text/css" href="style.css">
+        <script type="text/javascript" src="js/mainScript.js"></script>
     </head>
     <body>
         <h1>SensorNet Login</h1>
@@ -36,10 +37,12 @@
                     console.log(xhr.status)
                     
                      if(xhr.status === 200) {
-                    window.location.replace('mainpage2.html');
+                         setCookie('login', 'valid', 1);
+                    window.location.replace('mainPage.jsp');
 //                    setCookie(form.suderid.value, true);  
                      }
                 else {
+                    setCookie('login', 'invalid', 1);
                     if(xhr.status === 400){
                         alert("Error Password or Username")/*displays error message*/
                     }else alert("Connection error, please contact serviceprovider")
@@ -47,10 +50,7 @@
                         
                 }
                 };
-                xhr.send();   
-                                                          <%--<c:if test="${status>0}">--%>
-                                                             <%--<c:redirect url="/mainpage2.html"/>--%>
-                                                               <%--</c:if>--%>
+                xhr.send();
             }
         </script>
     </body>
