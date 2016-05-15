@@ -22,7 +22,7 @@
         <div id="Login">
         <h1>SensorNet Login</h1>
         <form id="loginForm" name="login" >
-            Username&nbsp;<input type="text" name="userid"/>
+            Username&nbsp;<input type="text" name="userid"/><br>
             Password&nbsp;&nbsp;<input type="password" name="pswrd"/>
             <br><input type="button" onclick="check(this.form)" value="Login"/>
             <input type="reset" value="Reset"/>
