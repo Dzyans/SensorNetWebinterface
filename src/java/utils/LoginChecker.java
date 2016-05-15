@@ -8,10 +8,6 @@ package utils;
 import javax.servlet.http.Cookie;
 
 
-
-
-
-
 /**
  *
  * @author thor
