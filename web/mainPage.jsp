@@ -11,12 +11,7 @@
     <head>
         <title>MainPage</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        
-        <script type="text/javascript" src="Map.js" ></script> <!Script for map>
-        
-        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">        
         <link rel="stylesheet" type="text/css" href="style.css">
         <script type="text/javascript" src="js/libs/firebase/firebase.js" ></script> <!Script for firebase>
         <script type="text/javascript" src="js/mainScript.js"></script>
@@ -26,6 +21,7 @@
         <% 
              Cookie[] cookies = request.getCookies();
              if(!LoginChecker.checkLoggedIn(cookies)){
+                 System.out.print("login good not");
             response.sendRedirect("login.jsp");
         }
         

@@ -22,6 +22,7 @@ public class LoginChecker {
              for(int i = 0; i < cookies.length; i++){
                  System.out.print(cookies[i].getName());
                  if(cookies[i].getName().equals("login")){
+                     System.out.println("login cookie found");
                      loggedInCookieFound = true;
                      Cookie c = cookies[i];
                      System.out.println(c.getValue());
@@ -33,8 +34,7 @@ public class LoginChecker {
              }
               if(loggedInCookieFound && loggedIn){
                   return true;
-                 } else return false;
-    
+                 } else return false;    
     }
     
 }

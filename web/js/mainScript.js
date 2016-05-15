@@ -16,7 +16,6 @@ function populateTruckList(){
             
             var row = tablearea.insertRow(-1);
             var cell_truckUID = row.insertCell(0);
-            var cell_truckStatus = row.insertCell(1);
             row.style.backgroundColor = "lightblue";
             cell_truckUID.innerHTML = childSnapshot.key();
             cell_truckUID.id = "truckText";
@@ -33,6 +32,7 @@ function populateTruckList(){
     });
     
 }
+//developer function
 function clearFirebase(path){
     
     var ref = new Firebase("https://sizzling-heat-4676.firebaseio.com/"+ path);
@@ -54,11 +54,12 @@ function setTruckInfoCookie(truckId) {
     document.cookie = "TruckCookie" + "=" + truckId + "; ";
 }
 
-function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + "; " + expires;
+function setCookie(cname, cvalue) {
+//    var d = new Date();
+//    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+//    var expires = "expires="+d.toUTCString();
+//    document.cookie = cname + "=" + cvalue + "; " + expires;
+    document.cookie = cname + "=" + cvalue + ";";
 }
 
 function getTruckCookie() {
@@ -122,7 +123,7 @@ function getNodeSensors(){
     document.getElementById("Truck_id").innerHTML = truck_id;
     initMap();
     console.log(getDate() + "--------------------------------------------")
-    
+    //this is a very ineffective way of accessing the database, which is why the webpage loads the sensordata extremely slow
     var ref = new Firebase("https://sizzling-heat-4676.firebaseio.com/"+ truck_id +"/sensor/node_frontTruckSection/");
     ref.once('value', function (snap){
         
@@ -138,8 +139,7 @@ function getNodeSensors(){
                     break;
                 case 'light':
                     getSensordata('light', truck_id, snapChild);
-                    break;
-                
+                    break;                
                 case 'pressure':
                     console.log("setting up pressure table");
                     getSensordata('pressure', truck_id, snapChild);
@@ -172,10 +172,7 @@ function getSensordata(sensorType, truck_id, dataSnapshot){
         console.log("number of " + sensorType + " sensors " + lightSensorCount);
         for(var i = 0; i < lightSensorCount; i++){
             createSensorEntry(i, sensorType, truck_id);
-        }
-        
-    
-    
+        }   
 }
 
 function createSensorEntry(index, sensorType, truck_id){
@@ -208,12 +205,12 @@ function check(form) {
                     console.log(xhr.status)
                     
                      if(xhr.status === 200) {
-                         setCookie('login', 'valid', 1);
+                         setCookie('login', 'valid');
                     window.location.replace('mainPage.jsp');
 //                    setCookie(form.suderid.value, true);  
                      }
                 else {
-                    setCookie('login', 'invalid', 1);
+                    setCookie('login', 'invalid');
                     if(xhr.status === 400){
                         alert("Error Password or Username")/*displays error message*/
                     }else alert("Connection error, please contact serviceprovider")
