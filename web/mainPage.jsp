@@ -35,7 +35,7 @@
             <!--<p onclick="clearFirebase('')"> clear firebase<br>-->
         </div>
         <div id="section">
-            <<-truk på trucks for at få liste over active trucks
+            <<-tryk på trucks for at få liste over active trucks
             <table id="sensorTable">
                 
             </table>

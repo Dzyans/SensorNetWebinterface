@@ -32,17 +32,17 @@ function initMap() {
 }
 
 function updatemap(map, myLatlng, marker){
-        ref = new Firebase("https://sizzling-heat-4676.firebaseio.com/Truck_Thorm_0/location/Current_location/");
+        ref = new Firebase("https://sensornet-82ce8.firebaseio.com/Truck_Thorm_0/location/Current_location/");
         
         ref.limitToFirst(1).on("child_changed", function (dataSnapshot){
-            console.log(dataSnapshot.child("asString").key());
+//            console.log(dataSnapshot.child("asString").key());
            
-            console.log(dataSnapshot.val());
+//            console.log(dataSnapshot.val());
            var asString = dataSnapshot.val();
             var latitute = asString.split(" ")[0];
            var longitude = asString.split(" ")[1];
-           console.log(latitute);
-           console.log(longitude);
+//           console.log(latitute);
+//           console.log(longitude);
            marker.setMap(null);
            myLatlng = {lat: parseFloat(latitute), lng: parseFloat(longitude)};
 

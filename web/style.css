@@ -76,8 +76,34 @@ body{
 #sensorViewMapPlace{
     line-height: 30px;
     background-color: darkgrey;
-    height: 350px;
+    height: 430x;
     width: 100px;
     float: left;
     padding: 5px;    
+}
+#controllerPlace{
+    padding-top: 10px;
+}
+#alarmButton{
+      border-top: 1px solid #96d1f8;
+   background: #c40000;
+   background: -webkit-gradient(linear, left top, left bottom, from(#ff0000), to(#c40000));
+   background: -webkit-linear-gradient(top, #ff0000, #c40000);
+   background: -moz-linear-gradient(top, #ff0000, #c40000);
+   background: -ms-linear-gradient(top, #ff0000, #c40000);
+   background: -o-linear-gradient(top, #ff0000, #c40000);
+   padding: 13px 26px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   border-radius: 8px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 14px;
+   font-family: Georgia, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   
 }

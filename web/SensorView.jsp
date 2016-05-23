@@ -36,7 +36,19 @@
     <div id="sensorViewMapPlace" style="width: 350px">   
         <div id="map">
         
-    </div>
+        </div>
+        <div id="controllerPlace">
+            <form id="chauffeurMessages">
+                Message one <br>
+                <input type="button" value="send" onClick="sendMsg(1, this.form.frstMsg.value)">
+                <input type="text" name="frstMsg">
+                Message two <br>
+                <input type="button" value="send" onClick="sendMsg(2, this.form.scndMsg.value)">
+                <input type="text" name="scndMsg">               
+            </form>
+             
+        </div>
+        <button id="alarmButton" onclick="startStopAlarm()"> Start Alarm</button>
     </div>
     <div id="section">
          
